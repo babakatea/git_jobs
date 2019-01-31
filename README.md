@@ -1,4 +1,4 @@
-# js_course
+# git_jobs
 This repository contains personal work at the course project usind JS.
 
 The project is based on the API https://jobs.github.com/api.
