@@ -1,0 +1,24 @@
+{
+  "name": "git_jobs",
+  "version": "1.0.0",
+  "description": "This repository contains personal work at the course project usind JS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/babakatea/git_jobs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/babakatea/git_jobs/issues"
+  },
+  "homepage": "https://github.com/babakatea/git_jobs#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.3.1",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  }
+}
