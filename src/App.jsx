@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Header from "./components/Header";
+import SearchForm from "./components/SearchForm";
 
 class App extends Component {
     render() {
@@ -13,6 +14,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Header buttons={navButtons}/>
+                <SearchForm/>
             </div>
         );
     }
