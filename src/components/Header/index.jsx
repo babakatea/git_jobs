@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './index.less'
+import {Link} from 'react-router-dom';
 
 class Header extends Component {
     render() {
         return (
             <header>
                 {this.props.buttons.map(button =>
-                    <button key={button.id}>{button.text}</button>
+                    <Link key={button.id} to={button.link}>
+                        <button>{button.text}</button>
+                    </Link>
                 )}
             </header>
         );
