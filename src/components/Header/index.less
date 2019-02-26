@@ -1,0 +1,30 @@
+@header-color: #ffffff;
+@text-color: #858585;
+
+header {
+  font-family: SansSerif, sans-serif;
+
+  display: flex;
+  flex-direction: row-reverse;
+
+  background: @header-color;
+  height: 70px;
+  width: 100%;
+  box-shadow: 1px 1px 15px #eaeaea;
+
+  button {
+    transition: 0.2s;
+
+    font-size: 14px;
+    cursor: pointer;
+    background: @header-color;
+    border: none;
+    color: @text-color;
+    height: 100%;
+    padding: 20px;
+
+    &:hover {
+      background: #dcdcdc;
+    }
+  }
+}

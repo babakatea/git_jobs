@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.7.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-scripts": "2.1.5",
@@ -31,7 +32,10 @@
     "eslint": "^5.13.0",
     "eslint-plugin-react": "^7.12.4",
     "jsxobj": "^1.1.0",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
     "react-hot-loader": "^4.6.5",
+    "style-loader": "^0.23.1",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"
