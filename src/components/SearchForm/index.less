@@ -1,31 +1,42 @@
 .hero-image {
-  text-align: center;
+  text-align: left;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding: 50px;
+  height: calc(100vh - 173px);
+  background-image: url("images/4.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin: 1px;
 
-  padding: 30px;
-  height: calc(100vh - 140px);
+  h1 {
+    color: #111;
+    font-family: 'Lato', sans-serif;
+    font-size: 55px;
+    font-weight: 300;
+    line-height: 64px;
+    margin: 0 0 0;
+    //padding: 5px 30px;
+    padding-left: 5px;
+  }
+
 
   form {
-    input, button {
+    button {
       font-size: 14px;
       border: 1px solid #dcdcdc;
-      padding: 8px 20px;
-    }
-
-    input {
-
-    }
-
-    button {
+      padding: 8px 30px;
       cursor: pointer;
       background: white;
       transition: 0.2s;
+      border-radius: 25px;
 
       &:hover {
         background: #dcdcdc;
       }
+
     }
   }
 }
+
