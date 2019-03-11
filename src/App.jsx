@@ -5,15 +5,14 @@ import {Switch, Route} from 'react-router';
 import {BrowserRouter} from 'react-router-dom';
 import Login from './components/Authorization/Login';
 import Register from './components/Authorization/Register'
+import SearchPage from './components/SearchPage';
 
 
 class App extends Component {
     render() {
         const navButtons = [
-            {id: 3, text: 'Login', link: 'login'},
-            {id: 2, text: 'Register', link: 'register'},
-            {id: 1, text: 'Get started', link: '/'},
-            {id: 0, text: 'How it works', link: ''},
+            {id: 1, text: 'Login', link: 'login'},
+            {id: 0, text: 'How it works', link: '/'}
         ];
 
         return (
@@ -21,7 +20,7 @@ class App extends Component {
                 <div className="App">
                     <Header buttons={navButtons}/>
                     <Switch>
-                        <Route path="/register" component={Register}/>
+                        <Route path="/search" component={SearchPage}/>
                         <Route path="/login" component={Login}/>
                         <Route path="/" component={SearchForm}/>
                     </Switch>

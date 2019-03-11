@@ -1,26 +1,49 @@
 .hero-image {
-  text-align: left;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 50px;
-  height: calc(100vh - 173px);
+  padding: 70px;
+  height: 100vh;
   background-image: url("images/4.jpg");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
-  margin: 1px;
+  background-size: contain;
 
-  h1 {
-    color: #111;
+  .title {
+    color: rgb(255, 255, 255);
     font-family: 'Lato', sans-serif;
-    font-size: 55px;
-    font-weight: 300;
+    font-size: 30px;
     line-height: 64px;
-    margin: 0 0 0;
-    //padding: 5px 30px;
     padding-left: 5px;
+    margin-top: 165px;
+    max-width: 35vw;
+    text-shadow: 2px 3px 6px black;
   }
 
+  .description {
+    width:100%;
+    text-align:center;
+
+    #how_it_works {
+      color: rgb(0, 0, 0);
+      margin-top: 350px;
+      text-align: center;
+      font-family: 'Lato', sans-serif;
+      font-size: 30px;
+    }
+
+    #img1 {
+      float:left;
+      width:200px;
+    }
+
+    #img2 {
+      display: inline-block;
+      margin:0 auto;
+      width:200px;
+    }
+
+    #img3 {
+      float:right;
+      width:200px;
+    }
+  }
 
   form {
     button {
@@ -31,12 +54,23 @@
       background: white;
       transition: 0.2s;
       border-radius: 25px;
+      margin-top: 35px;
 
       &:hover {
         background: #dcdcdc;
       }
 
     }
+  }
+}
+
+.icon {
+  width: 100%;
+  height: 150px;
+
+  &#icon1 {
+    background: url("images/icons/52782.png") no-repeat center;
+    background-size: contain;
   }
 }
 
