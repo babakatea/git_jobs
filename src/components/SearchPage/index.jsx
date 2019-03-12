@@ -10,7 +10,7 @@ class SearchForm extends Component {
 
 
     componentWillMount() {
-        fetch('https://jobs.github.com/positions?description=python&location=new+york', {
+        fetch('https://jobs.github.com/positions.json?search=node', {
             mode: "cors", // no-cors, cors, *same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
             credentials: "same-origin", // include, *same-origin, omit
@@ -31,3 +31,4 @@ class SearchForm extends Component {
 }
 
 export default SearchForm;
+//https://jobs.github.com/positions.json?search=node

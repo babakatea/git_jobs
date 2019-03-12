@@ -7,11 +7,13 @@ class Header extends Component {
     render() {
         return (
             <header>
+
                 {this.props.buttons.map(button =>
                     <Link key={button.id} to={button.link}>
                         <button>{button.text}</button>
                     </Link>
                 )}
+                <div className="logo"/>
             </header>
         );
     }
@@ -22,3 +24,4 @@ Header.propTypes = {
 };
 
 export default Header;
+// TODO: change the navbar for different pages?
