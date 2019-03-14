@@ -4,8 +4,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
     entry: "./src/index.jsx",
     output: {
-        path: path.join(__dirname, "/dist"),
-        filename: "index-bundle.js"
+        path: path.join(__dirname, "dist"),
+        filename: "index-bundle.js",
+        publicPath: '/'
     },
     resolve: {
         extensions: ['*', '.js', '.jsx']
@@ -51,6 +52,9 @@ module.exports = {
                 }]
             }
         ]
+    },
+    devServer: {
+        historyApiFallback: true,
     },
     plugins: [
         new HtmlWebpackPlugin({

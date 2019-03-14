@@ -3,20 +3,18 @@ import PropTypes from 'prop-types';
 import './index.less'
 import {Link} from 'react-router-dom';
 
-class Header extends Component {
-    render() {
-        return (
-            <header>
+function Header(props) {
+    return (
+        <header>
 
-                {this.props.buttons.map(button =>
-                    <Link key={button.id} to={button.link}>
-                        <button>{button.text}</button>
-                    </Link>
-                )}
-                <div className="logo"/>
-            </header>
-        );
-    }
+            {props.buttons.map(button =>
+                <Link key={button.id} to={button.link}>
+                    <button>{button.text}</button>
+                </Link>
+            )}
+            <div className="logo"/>
+        </header>
+    );
 }
 
 Header.propTypes = {
@@ -24,4 +22,5 @@ Header.propTypes = {
 };
 
 export default Header;
+
 // TODO: change the navbar for different pages?
