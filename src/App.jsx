@@ -18,7 +18,7 @@ class App extends Component {
 
         return (
             <BrowserRouter>
-                <div className="App">
+                <div>
                     <Header buttons={navButtons}/>
                     <Switch>
                         <Route path="/profile" component={Profile}/>

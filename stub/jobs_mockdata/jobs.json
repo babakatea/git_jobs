@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Frontend developer",
+    "location": "Los Angeles, US",
+    "salary": 100000
+  },
+  {
+    "id": 2,
+    "name": "Accountant",
+    "location": "Moscow, US",
+    "salary": 50000
+  },
+  {
+    "id": 3,
+    "name": "Frontend developer",
+    "location": "Los Angeles, US",
+    "salary": 100000
+  },
+  {
+    "id": 4,
+    "name": "DevOps developer",
+    "location": "Innopolis",
+    "salary": 12000
+  },
+  {
+    "id": 5,
+    "name": "Backend developer",
+    "location": "Kazan, Russia",
+    "salary": 20000
+  },
+  {
+    "id": 6,
+    "name": "Frontend developer",
+    "location": "Los Angeles, US",
+    "salary": 100000
+  },
+  {
+    "id": 7,
+    "name": "DevOps developer",
+    "location": "Innopolis",
+    "salary": 12000
+  },
+  {
+    "id": 8,
+    "name": "Backend developer",
+    "location": "Kazan, Russia",
+    "salary": 20000
+  }
+]

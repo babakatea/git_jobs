@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import './index.less';
+import * as styles from './index.css';
+import './index.css';
 
 import {
     Box,
@@ -12,9 +13,10 @@ import {
 import {grommet} from "grommet/themes";
 import Link from "react-router-dom/es/Link";
 
-const Profile = () => (
-    <div>Hello, here will be the profile page ... </div>
-);
+const Profile = () => {
+    console.log(styles);
+    return (<div className={styles.base}>Hello, here will be the profile page ... </div>);
+};
 
 export default Profile;
 
