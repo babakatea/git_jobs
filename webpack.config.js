@@ -1,3 +1,5 @@
+const webpack = require("webpack");
+
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -63,6 +65,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html"
+        }),
+        new webpack.DefinePlugin({
+            BACKEND_URL: `"${process.env.BACKEND_URL}"`
         })
     ]
 };

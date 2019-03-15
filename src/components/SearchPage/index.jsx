@@ -16,16 +16,12 @@ class SearchForm extends React.Component {
     }
 
     async loadJobsData() {
+        this.setState({error: void 0});
         let data = await api.jobs.fetchJobs();
-
-        console.log("Data from api at fn", data);
-
         this.setState({data});
     }
 
     render() {
-        console.log(this.state.data);
-
         return (
             <div className={'jobs-list'}>
                 {this.state.data.map(job => (
