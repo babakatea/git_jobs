@@ -21,7 +21,9 @@
     "build": "webpack --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "stub": "cross-env BACKEND_URL=http://localhost:3000/ npm run start"
+    "stub": "cross-env BACKEND_URL=http://localhost:3000/ npm run start",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,6 +35,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@storybook/addon-actions": "^5.0.3",
+    "@storybook/addon-links": "^5.0.3",
+    "@storybook/addons": "^5.0.3",
+    "@storybook/react": "^5.0.3",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.5",
     "babel-polyfill": "^6.26.0",
