@@ -1,0 +1,41 @@
+@header-color: #ffffff;
+@text-color: #5f1aa2;
+
+header {
+  font-family: "Hind", sans-serif;
+
+  display: flex;
+  flex-direction: row-reverse;
+
+  background: @header-color;
+  height: 50px;
+  width: 100%;
+
+
+  .logo {
+    flex: 1;
+    margin-top: 15px;
+    width: 30px;
+    height: 50%;
+    float: left;
+    margin-left: 20px;
+    background: url("images/GitHub-Logo.png") no-repeat left;
+    background-size: contain;
+  }
+
+  button {
+    transition: 0.2s;
+    float: right;
+    font-size: 15px;
+    cursor: pointer;
+    background: @header-color;
+    border: none;
+    color: @text-color;
+    height: 100%;
+    padding: 20px;
+
+    &:hover {
+      background: #dcdcdc;
+    }
+  }
+}
