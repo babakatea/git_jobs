@@ -6,4 +6,5 @@ import axios from "axios";
 axios.defaults.headers['Content-Type'] = 'application/json';
 axios.defaults.baseURL = BACKEND_URL;
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'));
+

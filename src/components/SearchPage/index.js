@@ -1,11 +1,10 @@
 import React from "react";
 import api from '../../api';
 import './index.less';
-import {Link} from "react-router-dom";
 import {grommet} from "grommet/themes";
-import {storiesOf} from "@storybook/react";
-import {FormCheckmark} from "grommet-icons";
-
+import axios from 'axios';
+import {connect} from "react-redux";
+import * as actionCreators from "../../redux/actionCreators";
 import {
     Box,
     Button,
@@ -17,38 +16,37 @@ import {
 } from "grommet";
 
 class SearchForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: []
-        };
-        this.check_state = {checked: !!props.checked};
-    }
 
-    onChange = event => this.setState({checked: event.target.checked});
+    getQuery = (props) => props.location.pathname.replace('/jobs', '').replace('/', '');
+
 
     componentDidMount() {
-        this.loadJobsData();
+        this.loadJobs(this.getQuery(this.props))
     }
 
-    async loadJobsData() {
-        this.setState({error: void 0});
-        let data = await api.jobs.fetchJobs();
-        this.setState({data});
-    }
-
-    onCheck = (event, value) => {
-        const {checked} = this.check_state;
-        if (event.target.checked) {
-            checked.push(value);
-            this.setState({checked});
-        } else {
-            this.setState({checked: checked.filter(item => item !== value)});
-        }
+    loadJobs = (description = '') => {
+        const searchParameter = description ? `description=${description}` : '';
+        axios.get(`https://jobs.github.com/positions.json?${searchParameter}`)
+            .then(response => {
+                this.props.jobsListLoaded(response.data);
+            })
+            .catch((err) => {
+                this.props.jobsListLoadFailed()
+            })
     };
 
+
+    buildDetailsClickHandler = (job) => () => {
+        this.props.history.push(`/job/${job.id}`)
+    };
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        if (nextProps.location.pathname !== this.props.location.pathname) {
+            this.loadJobs(this.getQuery(nextProps))
+        }
+    }
+
     render() {
-        const {checked} = this.check_state;
 
         return (
             <div className="search-page">
@@ -69,10 +67,7 @@ class SearchForm extends React.Component {
                                     />
                                 </FormField>
                                 <CheckBox
-                                    {...this.props}
                                     label="Full Time Only"
-                                    checked={checked}
-                                    onChange={this.onChange}
                                 />
                                 <Button id="search" type="submit" label="Search" primary/>
                             </Box>
@@ -81,20 +76,20 @@ class SearchForm extends React.Component {
                 </div>
 
                 <div className={'jobs-list'}>
-                    {this.state.data.map(job => (
+                    {this.props.jobs.map((job) =>
                         <div key={job.id} className={'jobs-entry'}>
-                            <p>ID: {job.id}</p>
+                            {/*<p>ID: {job.id}</p>*/}
                             <p>Type:{job.type}</p>
-                            <p>url: {job.url}</p>
-                            <p>Created: {job.created_at}</p>
-                            <p>Company: {job.company_url}</p>
+                            {/*<p>url: {job.url}</p>*/}
+                            {/*<p>Created: {job.created_at}</p>*/}
+                            {/*<p>Company: {job.company_url}</p>*/}
                             <p>Location{job.location}</p>
                             <p>Title: {job.title}</p>
-                            <p>Description: {job.description}</p>
-                            <p>How to apply: {job.how_to_apply}</p>
-                            <p>Company: {job.company_logo}</p>
+                            {/*<p>Description: {job.description}</p>*/}
+                            {/*<p>How to apply: {job.how_to_apply}</p>*/}
+                            {/*<p>Company: {job.company_logo}</p>*/}
                         </div>
-                    ))}
+                    )}
                 </div>
             </div>
         );
@@ -102,6 +97,18 @@ class SearchForm extends React.Component {
 
 }
 
-export default SearchForm;
+const mapStateToProps = (state) => ({
+    jobs: state.jobs,
+    jobFailed: state.jobsLoadingFailed,
+});
 
+const mapDispatchToProps = (dispatch) => ({
+    jobsListLoaded: (jobs) => {
+        dispatch(actionCreators.jobsListLoaded(jobs))
+    },
+    jobsListLoadFailed: () => {
+        dispatch(actionCreators.jobsListLoadFailed())
+    }
+});
 
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);

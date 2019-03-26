@@ -63,9 +63,9 @@ const Register = () => (
                         <Link to="/">
                             <Button label="Cancel"/>
                         </Link>
-                        {/*<Link to="/profile">*/}
+                        <Link to="/profile">
                             <Button type="submit" label="Submit" primary/>
-                        {/*</Link>*/}
+                        </Link>
                     </Box>
                 </Form>
             </Box>

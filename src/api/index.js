@@ -1,5 +1,5 @@
-import * as jobs from "./jobs";
-
-export default {
-    jobs,
-}
+// import * as jobs from "./jobs";
+//
+// export default {
+//     jobs,
+// }

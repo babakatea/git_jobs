@@ -1,14 +1,25 @@
 const webpack = require("webpack");
 
 const path = require("path");
+// const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const buildStubServer = require('./stub/server');
+const outputDirectory = path.join(__dirname, 'dist');
+const port = process.env.PORT || 9000;
+
+function srcPath(subdir) {
+    return path.join(__dirname, "src", subdir);
+}
 
 module.exports = {
-    entry: ['babel-polyfill', './src/index.jsx'],
+    mode: "development",
+    entry: {
+        root: ['babel-polyfill', './src/index.js'],
+    },
     output: {
-        path: path.join(__dirname, "dist"),
-        filename: "index-bundle.js",
-        publicPath: '/'
+        path: path.join(__dirname, outputDirectory),
+        publicPath: '/',
+        filename: "[name].js"
     },
     resolve: {
         extensions: ['*', '.js', '.jsx']
@@ -61,11 +72,19 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
+        contentBase: outputDirectory,
+        compress: true,
+        port: port,
+        before: buildStubServer
     },
+    devtool: "source-map",
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./src/index.html"
+            title: "GitJobs App",
+            hash: true,
+            template: "stub/index.html"
         }),
+
         new webpack.DefinePlugin({
             BACKEND_URL: `"${process.env.BACKEND_URL}"`
         })
