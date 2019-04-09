@@ -23,7 +23,7 @@ export class JobDetails extends React.Component {
             .then((data) => {
                 this.setState({ job: data })
             })
-    }
+    };
 
     componentDidMount() {
         if (this.props.match.params) {

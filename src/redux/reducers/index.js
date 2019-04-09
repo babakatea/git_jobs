@@ -1,24 +1,33 @@
+import {combineReducers} from 'redux';
+
 const initialState = {
-    jobs: [],
+    list: [],
     jobsLoadingFailed: false
 };
 
-export const reducer = (oldStore = initialState, action) => {
+export const jobs = (oldStore = initialState, action) => {
+    console.log(action);
 
-    console.log('Reducer called with action', action);
-    if(action.type === 'JOBS_LIST_LOADED') {
-        return {
-            jobs: action.jobs,
-            jobsLoadingFailed: false
+    switch (action.type) {
+        case 'JOBS_LIST_LOADED': {
+            return {
+                list: action.list,
+                jobsLoadingFailed: false
+            }
+        }
+        case 'JOBS_LIST_LOAD_FAILED': {
+            return {
+                list: [],
+                jobsLoadingFailed: true
+            }
         }
     }
-
-    if(action.type === 'JOBS_LIST_LOAD_FAILED') {
-        return {
-            jobs: [],
-            jobsLoadingFailed: true
-        }
-    }
-
-    return oldStore
+    return oldStore;
 };
+
+
+const rootReducer = combineReducers({
+    jobs,
+});
+
+export default rootReducer;

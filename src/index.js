@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import axios from "axios";
+import {store} from './redux/store';
+import {Provider} from 'react-redux';
 
-axios.defaults.headers['Content-Type'] = 'application/json';
-axios.defaults.baseURL = BACKEND_URL;
+const root = document.getElementById('root');
 
-ReactDOM.render(<App/>, document.getElementById('root'));
-
+ReactDOM.render(
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    root
+);

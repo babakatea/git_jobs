@@ -2,25 +2,72 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './index.less'
 import {Link} from 'react-router-dom';
+import {connect} from "react-redux";
 
-function Header(props) {
-    return (
-        <header>
+class Header extends Component {
+    constructor(props) {
+        super(props);
 
-            {props.buttons.map(button =>
-                <Link key={button.id} to={button.link}>
-                    <button>{button.text}</button>
-                </Link>
-            )}
-            <div className="logo"/>
-        </header>
-    );
+        this.state = {
+            links: props.links,
+        };
+    }
+
+    render() {
+        const headerLinksAuthorized = (params) => [
+            {
+                id: 0,
+                name: 'Profile',
+                href: '/profile',
+                active: 'active',
+            },
+            {
+                id: 1,
+                name: 'Logout',
+                href: '/logout',
+                active: 'active',
+            },
+            {
+                id: 2,
+                name: 'How it works',
+                href: '/',
+                active: 'active',
+            }
+        ];
+
+        const headerLinksUnauthorized = [
+            {
+                id: 0,
+                name: 'Login',
+                href: '/login',
+                active: 'active',
+            },
+            {
+                id: 1,
+                name: 'How it works',
+                href: '/',
+                active: 'active',
+            }
+        ];
+
+        const links = headerLinksUnauthorized;
+
+        return (
+            <header>
+                {/*<a href="/" className="logo"/>*/}
+                <div className="header-right">
+                    {links.map(item => <a key={item.id} href={item.href} className={item.active}>{item.name}</a>)}
+                </div>
+            </header>
+        );
+    }
 }
 
-Header.propTypes = {
-    buttons: PropTypes.arrayOf(PropTypes.object)
-};
+function mapStateToProps(state) {
+    const {authorization} = state;
+    return {
+        authorization
+    };
+}
 
-export default Header;
-
-// TODO: change the navbar for different pages?
+export default connect(mapStateToProps, null)(Header);

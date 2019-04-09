@@ -4,7 +4,6 @@ import './index.less';
 import {grommet} from "grommet/themes";
 import axios from 'axios';
 import {connect} from "react-redux";
-import * as actionCreators from "../../redux/actionCreators";
 import {
     Box,
     Button,
@@ -14,39 +13,15 @@ import {
     RadioButton,
     TextInput, CheckBox,
 } from "grommet";
+import {loadJobsList} from "../../redux/actions/jobs";
 
 class SearchForm extends React.Component {
-
-    getQuery = (props) => props.location.pathname.replace('/jobs', '').replace('/', '');
-
-
     componentDidMount() {
-        this.loadJobs(this.getQuery(this.props))
-    }
-
-    loadJobs = (description = '') => {
-        const searchParameter = description ? `description=${description}` : '';
-        axios.get(`https://jobs.github.com/positions.json?${searchParameter}`)
-            .then(response => {
-                this.props.jobsListLoaded(response.data);
-            })
-            .catch((err) => {
-                this.props.jobsListLoadFailed()
-            })
-    };
-
-
-    buildDetailsClickHandler = (job) => () => {
-        this.props.history.push(`/job/${job.id}`)
-    };
-
-    componentWillReceiveProps(nextProps, nextContext) {
-        if (nextProps.location.pathname !== this.props.location.pathname) {
-            this.loadJobs(this.getQuery(nextProps))
-        }
+        this.props.dispatch(loadJobsList({method: 'GET'}));
     }
 
     render() {
+        console.log(this.props);
 
         return (
             <div className="search-page">
@@ -58,6 +33,7 @@ class SearchForm extends React.Component {
                                     <TextInput
                                         id="name-input"
                                         placeholder="Filter by title, benefits, companies, expertise"
+                                        // value={this.state.searchQuery} onChange={this.handleChange}
                                     />
                                 </FormField>
                                 <FormField className="search-fields" label="Location" name="job_location" required>
@@ -76,18 +52,15 @@ class SearchForm extends React.Component {
                 </div>
 
                 <div className={'jobs-list'}>
-                    {this.props.jobs.map((job) =>
+                    {this.props.list.map((job) =>
                         <div key={job.id} className={'jobs-entry'}>
-                            {/*<p>ID: {job.id}</p>*/}
-                            <p>Type:{job.type}</p>
-                            {/*<p>url: {job.url}</p>*/}
-                            {/*<p>Created: {job.created_at}</p>*/}
-                            {/*<p>Company: {job.company_url}</p>*/}
-                            <p>Location{job.location}</p>
+                            <p>Type: {job.type}</p>
+                            <p>Location: {job.location}</p>
                             <p>Title: {job.title}</p>
-                            {/*<p>Description: {job.description}</p>*/}
-                            {/*<p>How to apply: {job.how_to_apply}</p>*/}
-                            {/*<p>Company: {job.company_logo}</p>*/}
+                            <button className="button button-like">
+                                <i className="like-heart"/>
+                                <span>Like</span>
+                            </button>
                         </div>
                     )}
                 </div>
@@ -97,18 +70,10 @@ class SearchForm extends React.Component {
 
 }
 
-const mapStateToProps = (state) => ({
-    jobs: state.jobs,
-    jobFailed: state.jobsLoadingFailed,
-});
+const mapStateToProps = (state) => {
+    const {jobs} = state;
 
-const mapDispatchToProps = (dispatch) => ({
-    jobsListLoaded: (jobs) => {
-        dispatch(actionCreators.jobsListLoaded(jobs))
-    },
-    jobsListLoadFailed: () => {
-        dispatch(actionCreators.jobsListLoadFailed())
-    }
-});
+    return jobs;
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);
+export default connect(mapStateToProps, null)(SearchForm);
