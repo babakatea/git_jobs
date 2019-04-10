@@ -24,9 +24,6 @@ class Profile extends Component {
           <img src="/src/components/Profile/images/1.png" alt="img"/>
           <p className="candidate">Candidate: </p>
           <p className="user-name"> Jane Doe </p>
-          {/*<p>ID: #53732946</p>*/}
-          {/*<p>Tests passed:</p>*/}
-          {/*<p>Degree: </p>*/}
           <Link to={'/editProfile'}><button>Edit</button></Link>
         </div>
         <form>
@@ -34,8 +31,7 @@ class Profile extends Component {
             <p>Full name: <span>Jane Doe<input readOnly value='Jane' type="text" className={edit ? 'edit' : ''}/></span></p>
             <p>Gender: <span>Male</span></p>
             <p>Birth date: <span>13.02.1998</span></p>
-            <p>Birth place: <span>Russia, Tatarstan</span></p>
-            <p>Address: <span>Universitetskaya street, home 2-339</span></p>
+            <p>Country: <span>Russia, Tatarstan</span></p>
             <p>Phone: <span>+7 888 567 48 90</span></p>
             <p>Email: <span>r.fark@gmail.com</span></p>
             <p>Graduated from: <span>Innopolis University</span></p>

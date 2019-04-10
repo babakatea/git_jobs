@@ -1,8 +1,6 @@
 import React from "react";
-import api from '../../api';
 import './index.less';
 import {grommet} from "grommet/themes";
-import axios from 'axios';
 import {connect} from "react-redux";
 import {
     Box,
@@ -10,20 +8,20 @@ import {
     Grommet,
     Form,
     FormField,
-    RadioButton,
     TextInput, CheckBox,
 } from "grommet";
 import {loadJobsList} from "../../redux/actions/jobs";
-import {Link} from 'react-router-dom';
 
 class SearchForm extends React.Component {
     componentDidMount() {
         this.props.dispatch(loadJobsList({method: 'GET'}));
     }
 
-    render() {
-        console.log(this.props);
+    buildDetailsClickHandler = (job) => () => {
+        this.props.history.push(`/job/${job.id}`)
+    };
 
+    render() {
         return (
             <div className="search-page">
                 <div>
@@ -54,15 +52,28 @@ class SearchForm extends React.Component {
 
                 <div className={'jobs-list'}>
                     {this.props.list.map((job) =>
-                        <div key={job.id} className={'jobs-entry'}>
-                            <Link to="/job-details"><p className="job-name">{job.title}</p></Link>
-                            <p>Type: {job.type}</p>
-                            <p>Location: {job.location}</p>
+                        <div key={job.id} job={job} className={'jobs-entry'}>
+                            <p onClick={this.buildDetailsClickHandler(job)} className="job-name">
+                                <span>{job.title}</span>
+                            </p>
+                            <p>{job.type}</p>
+                            <p className="job-location">{job.location}</p>
                             <button className="button-like">
                                 <span>Like</span>
                             </button>
+
                         </div>
                     )}
+                    <div className="pagination">
+                        <a href="#">&laquo;</a>
+                        <a href="#" className="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">6</a>
+                        <a href="#">&raquo;</a>
+                    </div>
                 </div>
             </div>
         );
@@ -76,4 +87,4 @@ const mapStateToProps = (state) => {
     return jobs;
 };
 
-export default connect(mapStateToProps, null)(SearchForm);
+export default connect(mapStateToProps)(SearchForm);

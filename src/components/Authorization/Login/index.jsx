@@ -21,4 +21,4 @@ const mapStateToProps = (state) => {
     return authorization;
 };
 
-export default connect(mapStateToProps, null)(Login);
+export default connect(mapStateToProps)(Login);

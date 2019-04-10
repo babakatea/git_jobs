@@ -12,7 +12,7 @@ import {PrivateRoute} from "./components/PrivateRoute/index.js";
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 import {Provider} from "react-redux";
-import {JobDetails} from "./components/JobDetails";
+import JobDetails from "./components/JobDetails";
 import {store} from "./redux/store";
 import alertActions from "./redux/actions/alerts";
 
@@ -57,11 +57,9 @@ class App extends Component {
                             <Route path="/search" component={SearchPage}/>
                             <Route path="/login" component={Login}/>
                             <Route path="/logout" component={Logout}/>
-                            <Route path="/job-details" component={JobDetails}/>
+                            <Route path="/job/:id" component={JobDetails}/>
                             <PrivateRoute path="/editProfile" component={EditForm}/>
                             <Route path="/" component={MainPage}/>
-                            {/*<Route path="/job/:id" component={JobDetails}/>*/}
-                            {/*<Redirect from="*" to="/jobs"/>*/}
                         </Switch>
                         <Footer links={footerLinks}/>
                     </div>

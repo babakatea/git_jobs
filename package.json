@@ -7,6 +7,7 @@
     "axios": "^0.18.0",
     "grommet": "^2.5.5",
     "history": "^4.7.2",
+    "mongodb": "^3.2.3",
     "nodemon": "^1.18.10",
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
@@ -23,7 +24,7 @@
   },
   "scripts": {
     "dev:stub": "cross-env PORT=1234 BACKEND_URL=/ npm run dev --hot",
-    "dev:api": "cross-env PORT=1235 BACKEND_URL=https://cors-anywhere.herokuapp.com/https://jobs.github.com/api/ npm run dev --hot",
+    "dev:api": "cross-env PORT=1235 BACKEND_URL=https://cors-anywhere.herokuapp.com/https://jobs.github.com/api npm run dev --hot",
     "dev": "webpack-dev-server",
     "build": "webpack",
     "lint": "eslint 'src/**/*.js'",

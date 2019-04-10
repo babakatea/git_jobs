@@ -21,6 +21,11 @@ export const jobs = (oldStore = initialState, action) => {
                 jobsLoadingFailed: true
             }
         }
+        case 'JOBS_DETAILS_LOADED': {
+            return {
+                job_details: action.details
+            }
+        }
     }
     return oldStore;
 };
