@@ -57,6 +57,7 @@ class App extends Component {
                             <Route path="/search" component={SearchPage}/>
                             <Route path="/login" component={Login}/>
                             <Route path="/logout" component={Logout}/>
+                            <Route path="/job-details" component={JobDetails}/>
                             <PrivateRoute path="/editProfile" component={EditForm}/>
                             <Route path="/" component={MainPage}/>
                             {/*<Route path="/job/:id" component={JobDetails}/>*/}

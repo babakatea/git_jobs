@@ -82,11 +82,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: "GitJobs App",
             hash: true,
-            template: "stub/index.html"
+            template: "./stub/index.html"
         }),
 
         new webpack.DefinePlugin({
-            BACKEND_URL: `"${process.env.BACKEND_URL}"`
-        })
+            BACKEND_URL: `"${process.env.BACKEND_URL || "https://cors-anywhere.herokuapp.com/https://jobs.github.com/api"}"`
+        }),
     ]
 };

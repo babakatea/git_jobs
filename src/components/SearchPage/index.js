@@ -14,6 +14,7 @@ import {
     TextInput, CheckBox,
 } from "grommet";
 import {loadJobsList} from "../../redux/actions/jobs";
+import {Link} from 'react-router-dom';
 
 class SearchForm extends React.Component {
     componentDidMount() {
@@ -54,11 +55,10 @@ class SearchForm extends React.Component {
                 <div className={'jobs-list'}>
                     {this.props.list.map((job) =>
                         <div key={job.id} className={'jobs-entry'}>
+                            <Link to="/job-details"><p className="job-name">{job.title}</p></Link>
                             <p>Type: {job.type}</p>
                             <p>Location: {job.location}</p>
-                            <p>Title: {job.title}</p>
-                            <button className="button button-like">
-                                <i className="like-heart"/>
+                            <button className="button-like">
                                 <span>Like</span>
                             </button>
                         </div>

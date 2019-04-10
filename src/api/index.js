@@ -1,6 +1,4 @@
-const isStub = false;
-
-const baseURL = isStub ? 'http://localhost:1234' : 'another url';
+const baseURL = BACKEND_URL;
 
 export default {
     baseURL
