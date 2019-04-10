@@ -23,8 +23,8 @@
     "styled-components": "^4.1.3"
   },
   "scripts": {
-    "dev:stub": "cross-env PORT=1234 BACKEND_URL=/ npm run dev --hot",
-    "dev:api": "cross-env PORT=1235 BACKEND_URL=https://cors-anywhere.herokuapp.com/https://jobs.github.com/api npm run dev --hot",
+    "dev:stub": "cross-env PORT=1234 BACKEND_URL=http://localhost:1234/api/get_jobs npm run dev --hot",
+    "dev:api": "cross-env PORT=1235 BACKEND_URL=https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json npm run dev --hot",
     "dev": "webpack-dev-server",
     "build": "webpack",
     "lint": "eslint 'src/**/*.js'",

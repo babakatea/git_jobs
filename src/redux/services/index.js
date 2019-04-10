@@ -14,7 +14,9 @@ const loginUrl = api.baseURL + '/auth/login';
 const registerUrl = api.baseURL + '/auth/register';
 const logoutUrl = api.baseURL + '/auth/logout';
 const profileUrl = api.baseURL + '/profile';
-const jobsUrl = 'https://jobs.github.com/positions.json';
+const jobsUrl = api.baseURL;
+
+// const jobsUrl = 'https://jobs.github.com/positions.json';
 // const jobsUrl = 'http://localhost:1234/api/get_jobs';
 
 function login(email, password) {
