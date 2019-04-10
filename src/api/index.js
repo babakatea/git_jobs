@@ -1,5 +1,5 @@
-import * as jobs from "./jobs";
+const baseURL = BACKEND_URL;
 
 export default {
-    jobs,
-}
+    baseURL
+};

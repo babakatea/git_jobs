@@ -1,18 +1,19 @@
-const express = require('express');
-const app = express();
-const mockData = require('./jobs_mockdata/jobs');
+const fs = require('fs');
+const path = require('path');
 
+const port = process.env.PORT;
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+module.exports = (root) => {
 
-app.get('/api/get_jobs', function (req, res) {
-
-    res.type('application/json').send(mockData);
-});
-
-app.listen(3000);
-
+    root.get('/api/get_jobs', (request, response) => {
+        if (port === '1234') {
+            fs.readFile(
+                path.resolve(__dirname, 'jobs.json'),
+                { encoding: 'utf8' },
+                (err, data) => {
+                    response.type('application/json').send(data)
+                }
+            )
+        }
+    })
+};

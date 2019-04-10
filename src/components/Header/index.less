@@ -2,28 +2,26 @@
 @text-color: #5f1aa2;
 
 header {
+  overflow: hidden;
+  box-shadow: #ebebeb 1px 1px 5px;
   font-family: "Hind", sans-serif;
-
   display: flex;
   flex-direction: row-reverse;
-
   background: @header-color;
-  height: 50px;
+  height: 55px;
   width: 100%;
+  text-decoration: none;
 
+  //.logo {
+  //  flex: 1;
+  //  margin-top: 15px;
+  //  float: left;
+  //  margin-left: 20px;
+  //  background: url("images/GitHub-Logo.png") no-repeat left;
+  //  background-size: contain;
+  //}
 
-  .logo {
-    flex: 1;
-    margin-top: 15px;
-    width: 30px;
-    height: 50%;
-    float: left;
-    margin-left: 20px;
-    background: url("images/GitHub-Logo.png") no-repeat left;
-    background-size: contain;
-  }
-
-  button {
+  a {
     transition: 0.2s;
     float: right;
     font-size: 15px;
@@ -33,9 +31,37 @@ header {
     color: @text-color;
     height: 100%;
     padding: 20px;
+    text-decoration:none;
 
     &:hover {
       background: #dcdcdc;
     }
+  }
+
+  a.active {
+  }
+
+  a:hover {
+    background-color: #bababa;
+  }
+}
+
+/* Float the link section to the right */
+.header-right {
+  float: right;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+  header a {
+    float: left;
+    display: flex;
+    text-align: left;
+  }
+
+  .header-right {
+    width: 100%;
+    text-align: center;
+    float: none;
   }
 }

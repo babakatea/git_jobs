@@ -1,22 +1,56 @@
 import React, {Component} from 'react';
-import * as styles from './index.css';
-import './index.css';
+import {connect} from "react-redux";
+import './index.less';
+import userActions from "../../redux/actions/users";
+import {Link} from "react-router-dom";
 
-import {
-    Box,
-    Button,
-    Grommet,
-    Form,
-    FormField,
-    RadioButton,
-} from "grommet";
-import {grommet} from "grommet/themes";
-import Link from "react-router-dom/es/Link";
 
-const Profile = () => {
-    console.log(styles);
-    return (<div className={styles.base}>Hello, here will be the profile page ... </div>);
-};
+class Profile extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-export default Profile;
+  componentDidMount() {
+    this.props.dispatch(userActions.getProfile());
+    console.log(this.props)
+  }
+
+  render() {
+    const edit = false;
+
+    return (
+      <div className="profile-container">
+        <div className="profile-header">
+          <img src="/src/components/Profile/images/1.png" alt="img"/>
+          <p className="candidate">Candidate: </p>
+          <p className="user-name"> Jane Doe </p>
+          <Link to={'/editProfile'}><button>Edit</button></Link>
+        </div>
+        <form>
+          <div className="profile-body">
+            <p>Full name: <span>Jane Doe<input readOnly value='Jane' type="text" className={edit ? 'edit' : ''}/></span></p>
+            <p>Gender: <span>Male</span></p>
+            <p>Birth date: <span>13.02.1998</span></p>
+            <p>Country: <span>Russia, Tatarstan</span></p>
+            <p>Phone: <span>+7 888 567 48 90</span></p>
+            <p>Email: <span>r.fark@gmail.com</span></p>
+            <p>Graduated from: <span>Innopolis University</span></p>
+            <p>Portfolio: <a href="#">View portfolio</a></p>
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
+
+
+function mapStateToProps(state) {
+  const {alert, profile} = state;
+  return {
+    alert,
+    profile,
+  };
+}
+
+export default connect(mapStateToProps, null)(Profile);
 
