@@ -41,24 +41,44 @@
     padding: 10px 15px;
     cursor: pointer;
     border-radius: 5px;
-    border: 1px solid #5f1aa2;
+    border: 1px solid #f0292d;
     background: white;
+    color: #f0292d;
     font-size: 14px;
     font-family: "Hind", sans-serif;
+
+    &:hover {
+      background-color: #f0292d;
+      color: white;
+    }
 
   }
 }
 
 .search-fields {
-  width: 400px;
-  margin-right: 15px;
+  width: 390px;
+  margin-right: 10px;
 
 }
 
 .search-page {
   width: auto;
   overflow-x: hidden;
+}
 
+#full_time {}
+
+.check-box {
+  margin-top: 43px;
+
+
+
+  #full_time {
+    outline: white;
+    border-color: white;
+    text-decoration: none;
+
+  }
 }
 
 #search {
@@ -76,7 +96,7 @@
 .pagination a {
   float: left;
   position: relative;
-  left: 180%;
+  left: 150%;
   color: black;
   padding: 8px 16px;
   text-decoration: none;
@@ -93,3 +113,6 @@
   border-radius: 5px;
 }
 
+.no-border > div {
+  border: none !important;
+}

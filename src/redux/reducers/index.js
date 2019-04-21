@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
+import {authorization} from "./auth";
 
 const initialState = {
     list: [],
@@ -6,8 +7,6 @@ const initialState = {
 };
 
 export const jobs = (oldStore = initialState, action) => {
-    console.log(action);
-
     switch (action.type) {
         case 'JOBS_LIST_LOADED': {
             return {
@@ -32,6 +31,7 @@ export const jobs = (oldStore = initialState, action) => {
 
 
 const rootReducer = combineReducers({
+    authorization,
     jobs,
 });
 

@@ -14,25 +14,38 @@ class Header extends Component {
     }
 
     render() {
-        const headerLinksAuthorized = (params) => [
+        const headerLinksAuthorized = [
             {
                 id: 0,
-                name: 'Profile',
-                href: '/profile',
-                active: 'active',
-            },
-            {
-                id: 1,
                 name: 'Logout',
                 href: '/logout',
                 active: 'active',
             },
             {
+                id: 1,
+                name: 'Profile',
+                href: '/profile',
+                active: 'active',
+            },
+            {
                 id: 2,
+                name: 'Search Jobs',
+                href: '/search',
+                active: 'active',
+            },
+            {
+                id: 3,
+                name: 'Statistics',
+                href: '/statistics',
+                active: 'active',
+            },
+            {
+                id: 4,
                 name: 'How it works',
                 href: '/',
                 active: 'active',
             }
+
         ];
 
         const headerLinksUnauthorized = [
@@ -50,7 +63,7 @@ class Header extends Component {
             }
         ];
 
-        const links = headerLinksUnauthorized;
+        const links = localStorage.getItem('token') ? headerLinksAuthorized : headerLinksUnauthorized;
 
         return (
             <header>

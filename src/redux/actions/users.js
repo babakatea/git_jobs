@@ -8,19 +8,16 @@ function login(email, password) {
   return dispatch => {
     dispatch(request({email}));
 
-      services.login(email, password)
-      .then(
-        payload => {
-          localStorage.setItem('token', JSON.stringify(payload.data.access_token));
-          history.push('/profile');
-          dispatch(success({token: payload.data.access_token, loggedIn: true}));
-          dispatch(alerts.success(payload.message));
-        },
-        error => {
-          dispatch(failure(error));
-          dispatch(alerts.error(error));
-        }
-      );
+    const token = services.login(email, password);
+
+    if(token) {
+      localStorage.setItem('token', token);
+      history.push('/search');
+      dispatch(success({token: token, loggedIn: true}));
+    } else {
+      dispatch(failure("Failed to login"));
+      dispatch(alerts.error("Failed to login"));
+    }
   };
 
   function request(payload) {
@@ -63,7 +60,7 @@ function getProfile() {
 }
 
 function logout() {
-    services.logout();
+  services.logout();
   history.push('/');
   return {type: userActionsTypes.LOGOUT};
 }
