@@ -86,7 +86,7 @@ module.exports = {
         }),
 
         new webpack.DefinePlugin({
-            BACKEND_URL: `"${process.env.BACKEND_URL || "https://cors-anywhere.herokuapp.com/https://jobs.github.com/api"}"`
+            BACKEND_URL: `"${process.env.BACKEND_URL || "https://jobs.github.com/positions.json"}"`
         }),
     ]
 };

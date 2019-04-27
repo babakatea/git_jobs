@@ -15,6 +15,7 @@ import {Provider} from "react-redux";
 import JobDetails from "./components/JobDetails";
 import {store} from "./redux/store";
 import alertActions from "./redux/actions/alerts";
+import Statistics from "./components/Statistics/index";
 
 class App extends Component {
 
@@ -59,6 +60,7 @@ class App extends Component {
                             <Route path="/logout" component={Logout}/>
                             <Route path="/job/:id" component={JobDetails}/>
                             <PrivateRoute path="/editProfile" component={EditForm}/>
+                            <Route path="/statistics" component={Statistics}/>
                             <Route path="/" component={MainPage}/>
                         </Switch>
                         <Footer links={footerLinks}/>

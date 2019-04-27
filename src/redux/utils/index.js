@@ -1,5 +1,5 @@
 export function authHeader() {
-  let token = JSON.parse(localStorage.getItem('token'));
+  let token = localStorage.getItem('token');
 
   if (token) {
     return { 'Authorization': 'Bearer ' + token };

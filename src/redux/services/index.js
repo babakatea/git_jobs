@@ -14,17 +14,15 @@ const loginUrl = api.baseURL + '/auth/login';
 const registerUrl = api.baseURL + '/auth/register';
 const logoutUrl = api.baseURL + '/auth/logout';
 const profileUrl = api.baseURL + '/profile';
-const jobsUrl = 'https://jobs.github.com/positions.json';
+const jobsUrl = api.baseURL;
+
+// const jobsUrl = 'https://jobs.github.com/positions.json';
 // const jobsUrl = 'http://localhost:1234/api/get_jobs';
 
 function login(email, password) {
-    const requestOptions = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({email, password})
-    };
-
-    return fetch(loginUrl, requestOptions).then(handleResponse);
+    if (email === 'superuser@gmail.com' && password === 'masterkey') {
+        return {access_token: 'real token yes'};
+    }
 }
 
 function register(username, password) {
@@ -43,8 +41,6 @@ function register(username, password) {
 
 function logout() {
     localStorage.removeItem('token');
-
-    // return fetch(logoutUrl, {method: 'POST'});
 }
 
 function getProfile() {
@@ -56,13 +52,26 @@ function getProfile() {
     return fetch(profileUrl, requestOptions).then(handleResponse);
 }
 
+function formQuery(params) {
+    let result = '';
+    let i = 0;
+
+    for (let key in params) {
+        if (params[key] && params.hasOwnProperty(key)) {
+            result += (i === 0 ? '?' : '&') + `${key}=${params[key]}`;
+            i++;
+        }
+    }
+
+    return result;
+}
+
 function getJobs(params) {
-    return fetch(jobsUrl, params).then(handleResponse);
+    return fetch(`${jobsUrl}${formQuery(params.params)}`, params).then(handleResponse);
 }
 
 function getDetails(jobID) {
-    return fetch(`https://jobs.github.com/positions/${jobID}.json`).
-    then(response => handleResponse(response));
+    return fetch(`https://jobs.github.com/positions/${jobID}.json`).then(response => handleResponse(response));
 }
 
 function handleResponse(response) {

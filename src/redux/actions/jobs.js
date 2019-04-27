@@ -19,7 +19,6 @@ const fail_details_job = (error) => ({
     error
 });
 
-
 export const loadJobsList = (params) => {
 
     return dispatch => {
