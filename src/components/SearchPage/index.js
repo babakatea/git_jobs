@@ -50,7 +50,7 @@ class SearchForm extends React.Component {
     };
 
     componentDidMount() {
-        !this.props.list.length > 0 && this.props.dispatch(loadJobsList({method: 'GET'}));
+        this.props.dispatch(loadJobsList({method: 'GET'}));
     }
 
     buildDetailsClickHandler = (job) => () => {
