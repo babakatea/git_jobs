@@ -6,11 +6,11 @@ import alerts from './alerts';
 
 function login(email, password) {
   return dispatch => {
-    dispatch(request({email}));
+    dispatch(request());
 
     const token = services.login(email, password);
 
-    if(token) {
+    if (token) {
       localStorage.setItem('token', token);
       history.push('/search');
       dispatch(success({token: token, loggedIn: true}));
@@ -20,23 +20,23 @@ function login(email, password) {
     }
   };
 
-  function request(payload) {
-    return {type: userActionsTypes.LOGIN_REQUEST, payload}
+  function request() {
+    return {type: userActionsTypes.USERS_LOGIN_REQUEST}
   }
 
   function success(payload) {
-    return {type: userActionsTypes.LOGIN_SUCCESS, payload}
+    return {type: userActionsTypes.USERS_LOGIN_SUCCESS, payload}
   }
 
   function failure(error) {
-    return {type: userActionsTypes.LOGIN_FAILURE, error}
+    return {type: userActionsTypes.USERS_LOGIN_FAILURE, error}
   }
 }
 
 function getProfile() {
   return dispatch => {
     dispatch(request());
-      services.getProfile()
+    services.getProfile()
       .then(
         user => dispatch(success(user)),
         error => {
@@ -47,22 +47,22 @@ function getProfile() {
   };
 
   function request() {
-    return {type: userActionsTypes.PROFILE_REQUEST}
+    return {type: userActionsTypes.USERS_PROFILE_REQUEST}
   }
 
   function success(data) {
-    return {type: userActionsTypes.PROFILE_SUCCESS, data}
+    return {type: userActionsTypes.USERS_LOGIN_SUCCESS, data}
   }
 
   function failure(error) {
-    return {type: userActionsTypes.PROFILE_FAILURE, error}
+    return {type: userActionsTypes.USERS_LOGIN_FAILURE, error}
   }
 }
 
 function logout() {
   services.logout();
   history.push('/');
-  return {type: userActionsTypes.LOGOUT};
+  return {type: userActionsTypes.USERS_LOGOUT};
 }
 
 export default {login, logout, getProfile};

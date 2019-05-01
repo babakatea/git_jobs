@@ -21,7 +21,7 @@ const jobsUrl = api.baseURL;
 
 function login(email, password) {
     if (email === 'superuser@gmail.com' && password === 'masterkey') {
-        return {access_token: 'real token yes'};
+        return {access_token: 'real token'};
     }
 }
 
@@ -71,11 +71,12 @@ function getJobs(params) {
 }
 
 function getDetails(jobID) {
-    return fetch(`https://jobs.github.com/positions/${jobID}.json`).then(response => handleResponse(response));
+    return fetch(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${jobID}.json`).then(response => handleResponse(response));
+    // return fetch(`https://jobs.github.com/positions/${jobID}.json`).then(response => handleResponse(response));
+
 }
 
 function handleResponse(response) {
-    console.log(response);
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok) {

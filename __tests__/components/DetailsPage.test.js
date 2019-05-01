@@ -3,14 +3,15 @@ import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 import createStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import SearchPage from "../../src/components/SearchPage";
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import JobDetails from "../../src/components/JobDetails";
 
-describe('Jobs list page', () => {
+
+describe('Job details page', () => {
   it('test render empty component', () => {
     const mockStore = createStore([thunk]);
     const initialState = {
-      jobs: []
+      details: []
 
     };
     const store = mockStore(initialState);
@@ -20,13 +21,12 @@ describe('Jobs list page', () => {
       .create(
         <Provider store={store}>
           <Router>
-            <Route component={SearchPage}/>
+            <Route path="/job/:id" component={JobDetails}/>
           </Router>
         </Provider>,
         { createNodeMock: ({ type }) => document.createElement(type) }
       );
 
-    // const instance = container.instance()
     expect(container.toJSON()).toMatchSnapshot()
   })
 
