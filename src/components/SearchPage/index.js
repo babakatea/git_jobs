@@ -82,6 +82,19 @@ class SearchForm extends React.Component {
     this.props.dispatch(loadJobsList({method: 'GET', params: filters}));
   };
 
+  validate = (value) => {
+    const regexp = /^([^0-9]*)$/;
+    const message = "Input is not a string";
+
+    console.log(regexp.test(value));
+
+    if (regexp.test(value)) {
+      console.log("Input matches the regular expression")
+    } else {
+      return message;
+    }
+  };
+
   render() {
     console.log(this.props);
     return (
@@ -92,11 +105,13 @@ class SearchForm extends React.Component {
               <Box direction="row" pad="medium" justify="center">
                 <FormField id="name-input"
                            placeholder="Filter by title, benefits, companies"
-                           className="search-fields" label="Job description" name="description">
+                           className="search-fields" label="Job description" name="description"
+                           validate={this.validate}>
                 </FormField>
                 <FormField id="location-input" className="search-fields" label="Location"
                            name="location"
-                           placeholder="Filter by city, state, zip code or country">
+                           placeholder="Filter by city, state, zip code or country"
+                           validate={this.validate}>
                 </FormField>
                 <div className="check-box">
                   <FormField
