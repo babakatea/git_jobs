@@ -12,10 +12,11 @@ export default {
 
 const registerUrl = api.baseURL + '/auth/register';
 const logoutUrl = api.baseURL + '/auth/logout';
-const profileUrl = api.baseURL + '/profile';
+const profileUrl = '/profile';
 let jobsUrl = api.baseURL === 'https://jobs.github.com/positions.json' ? api.baseURL : api.baseURL + '/get_jobs';
 let loginUrl = api.baseURL === 'https://jobs.github.com/positions.json' ? api.baseURL + '/auth/login' : api.baseURL + '/login';
 
+// https://cors-anywhere.herokuapp.com/
 
 function login(email, password) {
   if (api.baseURL === 'https://jobs.github.com/positions.json' && email === 'superuser@gmail.com' && password === 'masterkey') {

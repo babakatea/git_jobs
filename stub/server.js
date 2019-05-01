@@ -20,7 +20,6 @@ module.exports = (root) => {
 
   root.post('/login', (request, response) => {
     if (port === '1234') {
-      console.log(request.body);
       if (request.body.email === 'superuser@gmail.com' && request.body.password === 'masterkey') {
         response.type('application/json').send('[{"token":"1"}]');
       } else {
