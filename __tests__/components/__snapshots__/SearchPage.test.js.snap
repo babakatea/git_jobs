@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SearchForm test render empty component 1`] = `
+exports[`Jobs list page renders the component 1`] = `
 <div
   className="search-page"
 >

@@ -1,13 +1,16 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 import createStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {shallow} from 'enzyme';
+import toJson from 'enzyme-to-json';
+import configureStore from 'redux-mock-store';
 import SearchPage from "../../src/components/SearchPage";
 
 describe('Jobs list page', () => {
-  it('test render empty component', () => {
+  it('renders the component', () => {
     const mockStore = createStore([thunk]);
     const initialState = {
       jobs: []
@@ -23,7 +26,7 @@ describe('Jobs list page', () => {
             <Route component={SearchPage}/>
           </Router>
         </Provider>,
-        { createNodeMock: ({ type }) => document.createElement(type) }
+        {createNodeMock: ({type}) => document.createElement(type)}
       );
 
     // const instance = container.instance()
