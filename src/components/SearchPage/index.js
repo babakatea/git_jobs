@@ -83,6 +83,7 @@ class SearchForm extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div className="search-page">
         <div>
@@ -114,7 +115,7 @@ class SearchForm extends React.Component {
         </div>
 
         <div className={'jobs-list'}>
-          {this.props.list && this.props.list.map((job) =>
+          {this.props.jobs.list && this.props.jobs.list.map((job) =>
             <div key={job.id} className={'jobs-entry'}>
               <p onClick={this.buildDetailsClickHandler(job)} className="job-name">
                 <span>{job.title}</span>

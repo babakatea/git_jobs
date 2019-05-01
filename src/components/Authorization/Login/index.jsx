@@ -5,8 +5,6 @@ import {connect} from "react-redux";
 
 class Login extends Component {
     render() {
-        console.log(this.props);
-
         return (
             <div className="login">
                 <LoginForm dispatch={this.props.dispatch}/>
