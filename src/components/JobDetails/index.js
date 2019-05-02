@@ -21,7 +21,7 @@ class JobDetails extends React.Component {
     }
 
     render() {
-        const details = this.props.job_details;
+        const details = this.props.jobs && this.props.jobs.job_details;
 
         return details ? (
                 <div className="single-job-content">
@@ -49,7 +49,7 @@ class JobDetails extends React.Component {
 const mapStateToProps = (state) => {
     const {jobs} = state;
 
-    return jobs;
+    return {jobs};
 };
 
 export default connect(mapStateToProps, null)(JobDetails);

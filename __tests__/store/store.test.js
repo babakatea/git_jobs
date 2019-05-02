@@ -1,9 +1,6 @@
 import {store} from '../../src/redux/store';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import jobs from '../../src/redux/reducers/index';
-import actions from '../../src/redux/actions';
-import {jobsActionTypes, userActionsTypes} from "../../src/redux/constants";
 import {loadJobsDetails, loadJobsList} from "../../src/redux/actions/jobs";
 
 
@@ -30,7 +27,6 @@ describe('reducers works fine', () => {
     myStore.dispatch(loadJobsDetails(params));
 
     unsubscribe();
-
     done();
   });
 
