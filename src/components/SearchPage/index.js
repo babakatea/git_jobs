@@ -86,17 +86,13 @@ class SearchForm extends React.Component {
     const regexp = /^([^0-9]*)$/;
     const message = "Input is not a string";
 
-    console.log(regexp.test(value));
-
     if (regexp.test(value)) {
-      console.log("Input matches the regular expression")
     } else {
       return message;
     }
   };
 
   render() {
-    console.log(this.props);
     return (
       <div className="search-page">
         <div>

@@ -1,6 +1,5 @@
 import {authHeader} from '../utils';
 import api from '../../api';
-import history from "../../history";
 
 export default {
   login,
@@ -16,6 +15,7 @@ const profileUrl = '/profile';
 let jobsUrl = api.baseURL === 'https://jobs.github.com/positions.json' ? api.baseURL : api.baseURL + '/get_jobs';
 let loginUrl = api.baseURL === 'https://jobs.github.com/positions.json' ? api.baseURL + '/auth/login' : api.baseURL + '/login';
 
+// Add for testing
 // https://cors-anywhere.herokuapp.com/
 
 function login(email, password) {

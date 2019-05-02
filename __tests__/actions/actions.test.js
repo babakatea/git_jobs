@@ -44,7 +44,7 @@ describe('actions works fine', () => {
     });
   });
 
-  it('Test successful login action', (done) => {
+  it('Test login action', (done) => {
     const params = {
       email: 'superuser@gmail.com',
       password: 'masterkey'
@@ -52,23 +52,6 @@ describe('actions works fine', () => {
     const expectedActions = [
       userActionsTypes.USERS_LOGIN_REQUEST,
       userActionsTypes.USERS_LOGIN_SUCCESS,
-    ];
-
-    store.dispatch(actions.users.login(params.email, params.password));
-    expect(store.getActions().map(action => action.type)).toEqual(expectedActions);
-    done();
-  });
-
-
-  it('Test unsuccessful login action', (done) => {
-    const params = {
-      email: 'catea.baba@gmail.com',
-      password: 'newkey'
-    };
-    const expectedActions = [
-      userActionsTypes.USERS_LOGIN_REQUEST,
-      userActionsTypes.USERS_LOGIN_FAILURE,
-      alertActionsTypes.ALERT_ERROR
     ];
 
     store.dispatch(actions.users.login(params.email, params.password));
