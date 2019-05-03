@@ -41,6 +41,9 @@
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "globals": {
+      "BACKEND_URL": "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json"
     }
   },
   "scripts": {

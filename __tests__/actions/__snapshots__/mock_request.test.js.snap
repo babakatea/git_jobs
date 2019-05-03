@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`action load jobs list load jobs with moxios 1`] = `
+Object {
+  "type": "JOBS_LIST_REQUEST",
+}
+`;

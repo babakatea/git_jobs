@@ -119,7 +119,7 @@ class SearchForm extends React.Component {
                     className={"no-border"}
                   />
                 </div>
-                <Button id="search" type="submit" label="Search" primary/>
+                <Button onClick={this.props.handleLikeClick} id="search" type="submit" label="Search" primary/>
               </Box>
             </Form>
           </Grommet>
@@ -133,10 +133,9 @@ class SearchForm extends React.Component {
               </p>
               <p>{job.type}</p>
               <p className="job-location">{job.location}</p>
-              <button className="button-like">
+              <button id="button-like" className="button-like">
                 <span>Like</span>
               </button>
-
             </div>
           )}
           <div className="pagination">

@@ -5,7 +5,7 @@ import Registration from './components/Authorization/Registration/index';
 import Login from './components/Authorization/Login/index';
 import Logout from './components/Authorization/Logout';
 import Footer from './components/Footer';
-import SearchPage from './components/SearchPage';
+import SearchForm from './components/SearchForm';
 import Profile from "./components/Profile/index";
 import EditForm from "./components/Profile/EditForm";
 import {PrivateRoute} from "./components/PrivateRoute/index.js";
@@ -55,7 +55,7 @@ class App extends Component {
                         <Switch>
                             <Route path="/profile" component={Profile}/>
                             <Route path="/register" component={Registration}/>
-                            <Route path="/search" component={SearchPage}/>
+                            <Route path="/search" component={SearchForm}/>
                             <Route path="/login" component={Login}/>
                             <Route path="/logout" component={Logout}/>
                             <Route path="/job/:id" component={JobDetails}/>

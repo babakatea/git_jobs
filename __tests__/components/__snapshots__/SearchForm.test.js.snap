@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`List of jobs Test render component 1`] = `
+exports[`List of jobs page Test render component 1`] = `
 <div
   className="search-page"
 >
@@ -200,7 +200,7 @@ exports[`List of jobs Test render component 1`] = `
 </div>
 `;
 
-exports[`List of jobs Test render non-empty component 1`] = `
+exports[`List of jobs page Test render non-empty component 1`] = `
 <div
   className="search-page"
 >

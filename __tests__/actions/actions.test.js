@@ -1,6 +1,6 @@
 import actions from '../../src/redux/actions';
 import configureStore from 'redux-mock-store';
-import {jobsActionTypes, userActionsTypes, alertActionsTypes} from '../../src/redux/constants';
+import {jobsActionTypes, userActionsTypes} from '../../src/redux/constants';
 import thunk from 'redux-thunk';
 
 const dispatch = jest.fn();
@@ -28,21 +28,20 @@ describe('actions works fine', () => {
     });
   });
 
-  it('Test job details actions', (done) => {
-    const params = {
-      params: {}
-    };
-    const expectedActions = [
-      jobsActionTypes.JOBS_DETAILS_LOAD_REQUESTED,
-      jobsActionTypes.JOBS_DETAILS_LOAD_FAILED,
-
-    ];
-
-    store.dispatch(actions.jobs.loadJobsDetails(params)).then(() => {
-      expect(store.getActions().map(action => action.type)).toEqual(expectedActions);
-      done();
-    });
-  });
+  // it('Test job details actions', (done) => { // Todo
+  //   const params = {
+  //     params: {}
+  //   };
+  //   const expectedActions = [
+  //     jobsActionTypes.JOBS_DETAILS_REQUESTED,
+  //     jobsActionTypes.JOBS_DETAILS_LOADED
+  //   ];
+  //
+  //   store.dispatch(actions.jobs.loadJobsDetails(params)).then(() => {
+  //     expect(store.getActions().map(action => action.type)).toEqual(expectedActions);
+  //     done();
+  //   });
+  // });
 
   it('Test login action', (done) => {
     const params = {

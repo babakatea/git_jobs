@@ -25,7 +25,7 @@ const request_list_jobs = () => ({
 });
 
 const request_job_details = () => ({
-  type: jobsActionTypes.JOBS_DETAILS_LOAD_REQUESTED,
+  type: jobsActionTypes.JOBS_DETAILS_REQUESTED,
 });
 
 export const loadJobsList = (params) => {
