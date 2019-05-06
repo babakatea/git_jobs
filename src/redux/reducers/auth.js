@@ -5,19 +5,19 @@ const initialState = token ? { loggedIn: true , token} : {};
 
 export function authorization(state = initialState, action) {
   switch (action.type) {
-    case userActionsTypes.LOGIN_REQUEST:
+    case userActionsTypes.USERS_LOGIN_REQUEST:
       return {
         loggingIn: true,
         token: action.payload
       };
-    case userActionsTypes.LOGIN_SUCCESS:
+    case userActionsTypes.USERS_LOGIN_SUCCESS:
       return {
         token: action.payload.token,
         loggedIn: action.payload.loggedIn,
       };
-    case userActionsTypes.LOGIN_FAILURE:
+    case userActionsTypes.USERS_LOGIN_FAILURE:
       return {};
-    case userActionsTypes.LOGOUT:
+    case userActionsTypes.USERS_LOGOUT:
       return {};
     default:
       return state
@@ -26,15 +26,15 @@ export function authorization(state = initialState, action) {
 
 export function profile(state = initialState, action) {
   switch (action.type) {
-    case userActionsTypes.PROFILE_REQUEST:
+    case userActionsTypes.USERS_PROFILE_REQUEST:
       return {
         user: action
       };
-    case userActionsTypes.PROFILE_SUCCESS:
+    case userActionsTypes.USERS_PROFILE_SUCCESS:
       return {
         user: action.data.data
       };
-    case userActionsTypes.PROFILE_FAILURE:
+    case userActionsTypes.USERS_PROFILE_FAILURE:
       return {};
     default:
       return state

@@ -1,5 +1,5 @@
 import alerts from './alerts';
 import users from './users';
-import jobs from './jobs';
+import {loadJobsDetails, loadJobsList} from './jobs';
 
-export default {alerts, users, jobs};
+export default {alerts, users, jobs: {loadJobsDetails, loadJobsList}};

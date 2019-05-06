@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Job details page Test render non-empty component 1`] = `
+<p>
+  Fetching data...
+</p>
+`;
+
+exports[`Job details page test render component 1`] = `null`;
