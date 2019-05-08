@@ -12,14 +12,14 @@ export default {
 const registerUrl = api.baseURL + '/auth/register';
 const logoutUrl = api.baseURL + '/auth/logout';
 const profileUrl = '/profile';
-let jobsUrl = api.baseURL === 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json' ? api.baseURL : api.baseURL + '/get_jobs';
-let loginUrl = api.baseURL === 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json' ? api.baseURL + '/auth/login' : api.baseURL + '/login';
+let jobsUrl = api.baseURL === 'https://jobs.github.com/positions.json' ? api.baseURL : api.baseURL + '/get_jobs';
+let loginUrl = api.baseURL === 'https://jobs.github.com/positions.json' ? api.baseURL + '/auth/login' : api.baseURL + '/login';
 
 // Add for testing
 // https://cors-anywhere.herokuapp.com/
 
 function login(email, password) {
-  if (api.baseURL === 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json' && email === 'superuser@gmail.com' && password === 'masterkey') {
+  if (api.baseURL === 'https://jobs.github.com/positions.json' && email === 'superuser@gmail.com' && password === 'masterkey') {
     return {access_token: 'real token'};
   }
 
@@ -88,8 +88,8 @@ function getJobs(params) {
 }
 
 function getDetails(jobID) {
-  return fetch(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${jobID}.json`).then(response => handleResponse(response));
-  // return fetch(`https://jobs.github.com/positions/${jobID}.json`).then(response => handleResponse(response));
+  // return fetch(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${jobID}.json`).then(response => handleResponse(response));
+  return fetch(`https://jobs.github.com/positions/${jobID}.json`).then(response => handleResponse(response));
 
 }
 

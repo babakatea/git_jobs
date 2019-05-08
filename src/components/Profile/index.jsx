@@ -21,7 +21,6 @@ class Profile extends Component {
 
   componentDidMount() {
     this.props.dispatch(userActions.getProfile());
-    console.log(this.props)
   }
 
   render() {
@@ -46,10 +45,6 @@ class Profile extends Component {
             <p>Graduated from: <span>Innopolis University</span></p>
             <p>Portfolio: <a href="#">View portfolio</a></p>
           </div>
-          <div>111</div>
-          <div>222</div>
-          <span>111</span>
-          <span>222</span>
         </form>
       </div>
     );
