@@ -3,7 +3,20 @@ import {connect} from "react-redux";
 import './index.less';
 import userActions from "../../redux/actions/users";
 import {Link} from "react-router-dom";
-import {BarChart, Bar, CartesianGrid, Legend, Tooltip, XAxis, YAxis} from 'recharts';
+import {
+  BarChart,
+  Bar,
+  CartesianGrid,
+  Legend,
+  Tooltip,
+  XAxis,
+  YAxis,
+  PieChart,
+  Pie,
+  ResponsiveContainer,
+  Cell
+} from 'recharts';
+
 import {grommet} from "grommet/themes";
 import {
   Box,
@@ -15,52 +28,66 @@ import {
 } from "grommet";
 import {loadJobsList} from "../../redux/actions/jobs";
 
+const getJobsWithKeyword = (keyword, jobs) => {
+  return jobs.filter(job => job.title.toLowerCase().includes(keyword.toLowerCase()) || job.description.toLowerCase().includes(keyword.toLowerCase()));
+};
+
+const getJobsByLocation = (location, jobs) => {
+  return jobs.filter(job => job.location.toLowerCase().includes(location.toLowerCase()) || job.description.toLowerCase().includes(location.toLocaleString()));
+};
+
+const data = (keywords, jobs) => keywords.map(keyword => ({
+  name: keyword, amount: getJobsWithKeyword(keyword, jobs).length * 7
+}));
+
+const pageNr = 7;
+
+const mockPieChartData = [
+  {name: 'USA', amount: 55 * pageNr},
+  {name: 'Canada', amount: 11 * pageNr},
+  {name: 'Italy', amount: pageNr},
+  {name: 'Germany', amount: 50 * pageNr},
+  {name: 'UK', amount: 14 * pageNr},
+  {name: 'Spain', amount: 4 * pageNr},
+];
+
+function getRandomColor() {
+  let letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+let i = 0;
 
 class Statistics extends React.Component {
-
-  data = [
-    {
-      name: 'Python', uv: 313, pv: 96, amt: 313,
-    },
-    {
-      name: 'Java', uv: 313, pv: 173, amt: 313,
-    },
-    {
-      name: 'Ruby', uv: 313, pv: 42, amt: 313,
-    },
-    {
-      name: 'Mobile', uv: 313, pv: 71, amt: 313,
-    },
-    {
-      name: 'C', uv: 313, pv: 67, amt: 313,
-    },
-    {
-      name: 'Django', uv: 313, pv: 15, amt: 313,
-    },
-    {
-      name: 'Frontend', uv: 313, pv: 37, amt: 313,
-    },
-  ];
-
   getIntroOfPage = (label) => {
     if (label === 'Python') {
       return "Python jobs available";
-    } if (label === 'Java') {
+    }
+    if (label === 'Java') {
       return "Java jobs available";
-    } if (label === 'Ruby') {
+    }
+    if (label === 'Ruby') {
       return "Ruby jobs available";
-    } if (label === 'Mobile') {
+    }
+    if (label === 'Mobile') {
       return 'Mobile development jobs';
-    } if (label === 'C') {
+    }
+    if (label === 'C') {
       return 'C jobs available';
-    } if (label === 'Django') {
+    }
+    if (label === 'Django') {
       return 'Django jobs available';
-    } if (label === 'Frontend') {
+    }
+    if (label === 'Frontend') {
       return 'Frontend jobs available';
     }
   };
 
-  CustomTooltip = ({ active, payload, label }) => {
+  CustomTooltip = ({active, payload, label}) => {
     if (active) {
       return (
         <div className="custom-tooltip">
@@ -99,32 +126,22 @@ class Statistics extends React.Component {
   };
 
   render() {
+    const jobs = this.props.jobs && this.props.jobs.list;
+
+    const keywords = ['Python', 'Java', 'Frontend', 'Ruby', 'C', 'Mobile', 'Javascript', 'Ada', 'Shell',
+      'Typescript', 'C++', 'PHP', 'Backend'];
+
     return (
       <div className="search-page">
         <div>
           <Grommet theme={grommet}>
             <Form onSubmit={this.onSubmit}>
               <Box direction="row" pad="medium" justify="center">
-                {/*<FormField id="name-input"*/}
-                           {/*placeholder="Filter by title, benefits, companies"*/}
-                           {/*className="search-fields" label="Job description" name="description"*/}
-                           {/*validate={this.validate}>*/}
-                {/*</FormField>*/}
                 <FormField id="location-input" className="search-fields" label="Location"
                            name="location"
                            placeholder="Filter by city, state, zip code or country"
                            validate={this.validate}>
                 </FormField>
-                <div className="check-box">
-                  <FormField
-                    id="full-time"
-                    name="full_time"
-                    component={CheckBox}
-                    pad={true}
-                    label="Full Time Only"
-                    className={"no-border"}
-                  />
-                </div>
                 <Button id="search" type="submit" label="Search" primary/>
               </Box>
             </Form>
@@ -132,10 +149,11 @@ class Statistics extends React.Component {
         </div>
 
         <div className={'statistics'}>
+          <p className="title-for-bar-chart">Number of jobs distributed by location</p>
           <BarChart
             width={1000}
             height={600}
-            data={this.data}
+            data={data(keywords, jobs)}
             margin={{
               top: 5, right: 30, left: 20, bottom: 5,
             }}
@@ -145,18 +163,18 @@ class Statistics extends React.Component {
             <YAxis/>
             <Tooltip content={this.CustomTooltip}/>
             <Legend/>
-            <Bar dataKey="pv" barSize={20} fill="#8884d8"/>
+            <Bar dataKey="amount" barSize={20} fill="#888AAA" name="Number of jobs requiring this technology"/>
           </BarChart>
-
-          {/*{this.props.jobs.list && this.props.jobs.list.map((job) =>*/}
-            {/*<div className={'jobs-entry'}>*/}
-              {/*/!*<p className="job-name">*!/*/}
-                {/*/!*<span>{job.title}</span>*!/*/}
-              {/*/!*</p>*!/*/}
-              {/*/!*<p>{job.type}</p>*!/*/}
-              {/*/!*<p className="job-location">{job.location}</p>*!/*/}
-            {/*</div>*/}
-          {/*)}*/}
+          <p className="title-for-pie-chart">Most popular countries that posted some jobs</p>
+          <ResponsiveContainer  width="100%" height={400}>
+            <PieChart>
+              <Tooltip/>
+              <Legend/>
+              <Pie data={mockPieChartData} nameKey="name" dataKey="amount" fill="#1890ff">
+                {mockPieChartData.map(() => <Cell key={i++} fill={getRandomColor()}/>)}
+              </Pie>
+            </PieChart>
+          </ResponsiveContainer>
         </div>
       </div>
     );

@@ -29,8 +29,8 @@ class Profile extends Component {
     return (
       <div className="profile-container">
         <div className="profile-header">
-          <img alt="img"/>
-          <p className="candidate">Candidate: </p>
+          <img alt=""/>
+          <p className="candidate">User: </p>
           <p className="user-name"> Jane Doe </p>
           <Link to={'/editProfile'}><Button>Edit</Button></Link>
         </div>
