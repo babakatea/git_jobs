@@ -12,7 +12,7 @@ export default {
 const registerUrl = api.baseURL + '/auth/register';
 const logoutUrl = api.baseURL + '/auth/logout';
 const profileUrl = '/profile';
-let jobsUrl = api.baseURL === 'https://jobs.github.com/positions.json' ? api.baseURL : api.baseURL + '/get_jobs';
+let jobsUrl = api.baseURL === 'https://jobs.github.com/positions.json' ? api.baseURL : api.baseURL;
 let loginUrl = api.baseURL === 'https://jobs.github.com/positions.json' ? api.baseURL + '/auth/login' : api.baseURL + '/login';
 
 // Add for testing
@@ -88,8 +88,8 @@ function getJobs(params) {
 }
 
 function getDetails(jobID) {
-  // return fetch(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${jobID}.json`).then(response => handleResponse(response));
-  return fetch(`https://jobs.github.com/positions/${jobID}.json`).then(response => handleResponse(response));
+  return fetch(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${jobID}.json`).then(response => handleResponse(response));
+  // return fetch(`https://jobs.github.com/positions/${jobID}.json`).then(response => handleResponse(response));
 
 }
 
