@@ -33,11 +33,10 @@ const LoginForm = (props) => {
           placeholder="Enter your password"
           type="password"
           required
+          validate={{regexp: /^[a-z]/i}}
         />
         <div className="form-control">
-          <button id="form-button" type="submit">
-            Submit
-          </button>
+          <Button type="submit" label="Login" primary/>
         </div>
       </Form>
       <p className="form-control-text">If you don't have an account, <Link to="/register">register</Link>.</p>
